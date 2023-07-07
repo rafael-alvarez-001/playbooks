@@ -1,2 +1,4 @@
+---
+# Arbitrary set of variables for users
 user_name: "ralphus"
 user_state: "present"
