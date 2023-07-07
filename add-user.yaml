@@ -1,0 +1,14 @@
+---
+- name: Add users to host
+  hosts: all
+  vars:
+    user_name: "ralphus"
+    user_state: "present"
+  tasks:
+    - name: Add user
+      user:
+        name: "{{ user_name }}"
+        state: "{{ user_state }}"
+        shell: /bin/bash
+        groups: sudo
+        append: yes
