@@ -1,9 +1,8 @@
 ---
 - name: Add users to host
   hosts: all
-  vars:
-    user_name: "ralphus"
-    user_state: "present"
+  vars_files:
+    - vars/users.yml
   tasks:
     - name: Add user
       user:
