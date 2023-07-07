@@ -1,0 +1,11 @@
+---
+- name: New user is created
+  hosts: nodes
+  become: true
+  tasks:
+    - name: User gets created
+      user:
+        name: ralphtest
+        state: present
+        shell: /bin/bash
+        
