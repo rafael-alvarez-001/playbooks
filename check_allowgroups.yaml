@@ -1,0 +1,14 @@
+---
+  - name: Examples of lineinfile
+    hosts: bor
+    
+    tasks:
+      - name: "Check to see if AllowGroups is present"
+        tags: AllowGroups
+        lineinfile:
+          path: /etc/ssh/sshd_config
+          line: "AllowGroups"
+          state: present
+          backup: yes
+        check_mode: yes
+        register: allowgroups_present
