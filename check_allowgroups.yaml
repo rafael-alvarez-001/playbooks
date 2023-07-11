@@ -7,8 +7,10 @@
         tags: AllowGroups
         lineinfile:
           path: /etc/ssh/sshd_config
-          line: "AllowGroups"
+          # The String to Search
+          regexp: "ralphus" 
+          # The String to Replace
+          line: "ralphos"
           state: present
           backup: yes
-        check_mode: yes
         register: allowgroups_present
