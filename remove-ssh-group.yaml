@@ -1,0 +1,23 @@
+---
+- name: Remove group ralphus from AllowGroups in sshd_config
+  hosts: bor
+  become: true
+  tasks:
+    - name: Check if AllowGroups is present in sshd_config
+      command: grep -q '^AllowGroups' /etc/ssh/sshd_config
+      register: allowgroups_present
+      changed_when: false
+      failed_when: false
+
+    - name: Remove group ralphus from AllowGroups
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^AllowGroups'
+        state: absent
+        backup: yes
+      when: allowgroups_present.stdout == "0"
+
+    - name: Restart sshd service
+      service:
+        name: sshd
+        state: restarted

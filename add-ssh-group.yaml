@@ -2,11 +2,11 @@
 - name: Add a new AllowUser
   hosts: bor
   vars:
-    new-user-name: rafael
+    new_user_name: rafael
   tasks:
-    - command: grep "^AllowUsers " /etc/ssh/sshd_config
+    - command: grep "^AllowGroups " /etc/ssh/sshd_config
       register: old_user_list
     - lineinfile:
-      regexp: "^AllowUsers .+"
-      line: "{{ old_user_list.stdout }} {{new-user-name}}"
-    when: old_user_list.rc == 0
+        regexp: "^AllowGroups .+"
+        line: "{{ old_user_list.stdout }} {{new_user_name}}"
+        when: old_user_list.rc == 0
